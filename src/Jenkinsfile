@@ -1,6 +1,10 @@
 pipeline {
     agent any
     stages {
+        stage('prepare') {
+            steps {
+                sh 'echo "Preparing Build Job"'
+            } 
         stage('build') {
             steps {
                 sh 'javac -d . src/*.java'
@@ -11,6 +15,11 @@ pipeline {
         stage('run') {
             steps {
                 sh 'java -jar rectangle.jar 7 9'
+            }
+        }
+        stage('archive') {
+            steps {
+                sh 'echo "Archiving Ouptput Files"'
             }
         }
     }
